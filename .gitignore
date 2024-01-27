@@ -1,0 +1,6 @@
+*.DS_Store
+
+*.html
+*.pdf
+*_files/
+/.luarc.json

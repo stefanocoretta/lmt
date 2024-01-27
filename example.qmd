@@ -1,0 +1,13 @@
+---
+title: "Pandoc LMT Example"
+filters:
+  - lmt
+---
+
+Let's try with a simple Praat script.
+
+```praat {file="hello.praat"}
+writeInfoLine: "Hello Praat!"
+```
+
+

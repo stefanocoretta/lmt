@@ -1,0 +1,8 @@
+title: Pandoc Literate Markdown Tangler
+author: Stefano Coretta
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  filters:
+    - lmt.lua
+
