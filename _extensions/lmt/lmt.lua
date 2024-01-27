@@ -1,38 +1,42 @@
 code_blocks = {}
 
 function CodeBlock (block)
-  -- I might want to save the file and chunk ref for later
-  table.insert(code_blocks, block)
+  local this_block = {
+    block = block,
+    text = block.text,
+    file = block.attr.attributes.file,
+    ref = block.attr.attributes.ref
+  }
+  table.insert(code_blocks, this_block)
   quarto.log.output(code_blocks);
 end
 
 function Pandoc(doc)
+  local files = {}
   for _, block in ipairs(code_blocks) do
-    if string.find(block.text, "<<<") then
-      print(block.text)
-      print("-------------------------")
-      local start_marker = "<<<"
-      local end_marker = ">>>"
-  
-      local start_index, end_index = string.find(block.text, start_marker)
-      if start_index and end_index then
-        ref_name = string.sub(block.text, end_index + 1, string.find(block.text, end_marker, end_index + 1) - 1)
-        print(ref_name)
+    if block.file then
+      this_file = {path = block.file, text = block.text}
+      table.insert(files, this_file)
+    end
 
-      end
-    end  
+    -- if string.find(block.text, "<<<") then
+    --   print(block.text)
+    --   print("-------------------------")
+    --   local start_marker = "<<<"
+    --   local end_marker = ">>>"
+  
+    --   local start_index, end_index = string.find(block.text, start_marker)
+    --   if start_index and end_index then
+    --     ref_name = string.sub(block.text, end_index + 1, string.find(block.text, end_marker, end_index + 1) - 1)
+    --     print(ref_name)
+    --   end
+    -- end
+  end
+  quarto.log.output(files)
+
+  for _, file in ipairs(files) do
+    local file_to = io.open(file.path, "w")
+    file_to:write(file.text)
+    file_to:close()
   end
 end
-
--- function CodeBlock(block)
---   -- quarto.log.output(block)
---   if block.attr.attributes.file then
---     file_name = block.attr.attributes.file
-    
---     file_text = block.text
-    
---     local file = io.open(file_name, "w")
---     file:write(block.text)
---     file:close()
---   end
--- end

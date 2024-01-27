@@ -18,5 +18,19 @@ And here we define the `append` block.
 
 ```praat {ref="append"}
 appendInfoLine: "Heya!"
+
+<<<clean>>>
 ```
 
+And finally we clean everything.
+
+```praat {ref="clean"}
+writeInfoLine: ""
+```
+
+Now let's make a new script.
+
+```praat {file="second.praat"}
+x$ = "a"
+writeInfoLine: x$
+```
