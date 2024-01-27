@@ -2,12 +2,21 @@
 title: "Pandoc LMT Example"
 filters:
   - lmt
+# for syntax highlighting of Praat
+syntax-definitions: [_extensions/lmt/pandoc/pandoc-praat/praat.xml]
 ---
 
 Let's try with a simple Praat script.
 
 ```praat {file="hello.praat"}
 writeInfoLine: "Hello Praat!"
+
+<<<append>>>
 ```
 
+And here we define the `append` block.
+
+```praat {ref="append"}
+appendInfoLine: "Heya!"
+```
 
