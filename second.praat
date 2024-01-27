@@ -1,2 +1,5 @@
-x$ = "a"
-writeInfoLine: x$
+writeInfoLine: "Hello Praat!"
+
+appendInfoLine: "Heya!"
+
+<<<clean>>>

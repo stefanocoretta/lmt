@@ -1,3 +1,5 @@
 writeInfoLine: "Hello Praat!"
 
-<<<append>>>
+appendInfoLine: "Heya!"
+
+<<<clean>>>
