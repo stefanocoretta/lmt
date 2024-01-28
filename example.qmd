@@ -12,6 +12,8 @@ Let's try with a simple Praat script.
 writeInfoLine: "Hello Praat!"
 
 <<<append>>>
+
+<<<fin>>>
 ```
 
 And here we define the `append` block.
@@ -33,4 +35,10 @@ Now let's make a new script.
 ```praat {file="second.praat"}
 x$ = "a"
 writeInfoLine: x$
+
+<<<fin>>>
+```
+
+```praat {ref="fin"}
+# That's all!
 ```
