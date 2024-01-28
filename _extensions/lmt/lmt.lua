@@ -57,7 +57,7 @@ function Pandoc(doc)
     if block.file then
       new_text = block.text
       local _, count = string.gsub(new_text, "<<<", "")
-      quarto.log.output(count)
+      -- quarto.log.output(count)
       while check_ref(new_text) > 0 do
         new_text = embed_ref(new_text, code_blocks)
       end

@@ -6,7 +6,11 @@ filters:
 syntax-definitions: [_extensions/lmt/pandoc/pandoc-praat/praat.xml]
 ---
 
-Let's try with a simple Praat script.
+## `hello.praat`
+
+Let's try with a simple [Praat](https://www.fon.hum.uva.nl/praat/) script.
+
+To initialise a file (in this case our first script), use a code block and specify the file name, like so:
 
 ```praat {file="hello.praat"}
 # hello.praat
@@ -17,7 +21,9 @@ writeInfoLine: "Hello Praat!"
 <<<fin>>>
 ```
 
-And here we define the `append` block.
+This will create a file `hello.praat` with the code in the code block and it will embed code from the referenced code blocks (i.e. `append` and `fin`).
+
+Let's define the `append` block. We can do so with a code block for which we specify the `ref` name:
 
 ```praat {ref="append"}
 # append
@@ -26,13 +32,15 @@ appendInfoLine: "Heya!"
 <<<clean>>>
 ```
 
-And finally we clean everything.
+You will see that this code block has a referenced block too! Referencing works recursively. The `clean` code block is defined below.
 
 ```praat {ref="clean"}
 # clean
 
 writeInfoLine: ""
 ```
+
+## `second.praat`
 
 Now let's make a new script.
 
@@ -44,6 +52,10 @@ writeInfoLine: x$
 
 <<<fin>>>
 ```
+
+## `fin`
+
+Of course, code blocks can be reused! Also note that the order in which the code blocks are specified does not matter.
 
 ```praat {ref="fin"}
 # fin
