@@ -9,6 +9,7 @@ syntax-definitions: [_extensions/lmt/pandoc/pandoc-praat/praat.xml]
 Let's try with a simple Praat script.
 
 ```praat {file="hello.praat"}
+# hello.praat
 writeInfoLine: "Hello Praat!"
 
 <<<append>>>
@@ -19,6 +20,7 @@ writeInfoLine: "Hello Praat!"
 And here we define the `append` block.
 
 ```praat {ref="append"}
+# append
 appendInfoLine: "Heya!"
 
 <<<clean>>>
@@ -27,12 +29,16 @@ appendInfoLine: "Heya!"
 And finally we clean everything.
 
 ```praat {ref="clean"}
+# clean
+
 writeInfoLine: ""
 ```
 
 Now let's make a new script.
 
 ```praat {file="second.praat"}
+# second.praat
+
 x$ = "a"
 writeInfoLine: x$
 
@@ -40,5 +46,7 @@ writeInfoLine: x$
 ```
 
 ```praat {ref="fin"}
+# fin
+
 # That's all!
 ```
