@@ -3,7 +3,7 @@ title: "Pandoc LMT Example"
 filters:
   - lmt
 # for syntax highlighting of Praat
-syntax-definitions: [pandoc-praat/praat.xml]
+syntax-definitions: [praat.xml]
 ---
 
 ## `hello.praat`
