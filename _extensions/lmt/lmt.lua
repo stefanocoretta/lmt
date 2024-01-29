@@ -10,15 +10,37 @@ function CodeBlock (block)
   table.insert(code_blocks, this_block)
 end
 
+function find_line_start(str, char_pos)
+  local line_start = char_pos
+  local current_pos = char_pos - 1
+
+  while current_pos <= char_pos do
+
+      if string.sub(str, current_pos, current_pos) == "\n" then
+        line_start = current_pos + 1
+        break
+      end
+
+      current_pos = current_pos - 1
+  end
+
+  return line_start
+end
+
 function embed_ref (text, code_blocks)
   if string.find(text, "<<<") then
       
     local ref_array = {}
-    local startPos, endPos = text:find("<<<.->>>")
-    while startPos do
-        local extracted = text:sub(startPos + 3, endPos - 3)
+    local start_pos, end_pos = text:find("<<<.->>>")
+    while start_pos do
+        local extracted = text:sub(start_pos + 3, end_pos - 3)
         table.insert(ref_array, extracted)
-        startPos, endPos = text:find("<<<.->>>", endPos + 1)
+
+        line_start = find_line_start(text, start_pos)
+        quarto.log.output(line_start)
+        local indent = text:sub(line_start, start_pos - 1)
+        
+        start_pos, end_pos = text:find("<<<.->>>", end_pos + 1)
     end
 
     for _, ref in ipairs(ref_array) do

@@ -29,7 +29,7 @@ Let's define the `append` block. We can do so with a code block for which we spe
 # append
 appendInfoLine: "Heya!"
 
-<<<clean>>>
+    <<<clean>>>
 ```
 
 You will see that this code block has a referenced block too! Referencing works recursively. The `clean` code block is defined below.
