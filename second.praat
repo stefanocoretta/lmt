@@ -1,8 +1,6 @@
 # second.praat
-
 x$ = "a"
 writeInfoLine: x$
 
 # fin
-
-# That's all!
+appendInfoLine: "That's all!"

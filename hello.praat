@@ -4,10 +4,10 @@ writeInfoLine: "Hello Praat!"
 # append
 appendInfoLine: "Heya!"
 
-    # clean
-
-writeInfoLine: ""
+for i from 1 to 5
+    # loop
+    appendInfoLine: i
+endfor
 
 # fin
-
-# That's all!
+appendInfoLine: "That's all!"

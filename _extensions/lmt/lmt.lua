@@ -34,21 +34,33 @@ function embed_ref (text, code_blocks)
     local start_pos, end_pos = text:find("<<<.->>>")
     while start_pos do
         local extracted = text:sub(start_pos + 3, end_pos - 3)
-        table.insert(ref_array, extracted)
 
         line_start = find_line_start(text, start_pos)
         quarto.log.output(line_start)
-        local indent = text:sub(line_start, start_pos - 1)
+        if line_start < start_pos then
+          indent = text:sub(line_start, start_pos - 1)
+          quarto.log.output(indent)
+        else
+          indent = ""
+        end
+
+        table.insert(ref_array, {extracted = extracted, indent = indent})
         
         start_pos, end_pos = text:find("<<<.->>>", end_pos + 1)
     end
 
     for _, ref in ipairs(ref_array) do
-      ref_id = key_of(code_blocks, ref)
+      local ref_id = key_of(code_blocks, ref.extracted)
+      to_replace = code_blocks[ref_id].text
+      to_replace = string.gsub(
+        to_replace,
+        "\n",
+        "\n" .. ref.indent
+      )
       text = string.gsub(
         text,
-        "<<<" .. ref .. ">>>",
-        code_blocks[ref_id].text
+        "<<<" .. ref.extracted .. ">>>",
+        to_replace
       )
     end
   else
