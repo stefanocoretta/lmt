@@ -36,10 +36,8 @@ function embed_ref (text, code_blocks)
         local extracted = text:sub(start_pos + 3, end_pos - 3)
 
         line_start = find_line_start(text, start_pos)
-        quarto.log.output(line_start)
         if line_start < start_pos then
           indent = text:sub(line_start, start_pos - 1)
-          quarto.log.output(indent)
         else
           indent = ""
         end
