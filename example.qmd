@@ -12,7 +12,7 @@ Let's try with a simple [Praat](https://www.fon.hum.uva.nl/praat/) script.
 
 To initialise a file (in this case our first script), use a code block and specify the file name, like so:
 
-```praat {file="hello.praat"}
+```praat {file="code/praat/hello.praat"}
 # hello.praat
 writeInfoLine: "Hello Praat!"
 
@@ -45,7 +45,7 @@ appendInfoLine: i
 
 Now let's make a new script.
 
-```praat {file="second.praat"}
+```praat {file="code/praat/second.praat"}
 # second.praat
 x$ = "a"
 writeInfoLine: x$

@@ -83,6 +83,30 @@ function check_ref (text)
   return count
 end
 
+function extract_dirs(file_path)
+  local dirs = {}
+  for dir in file_path:gmatch("[^/]+") do
+    table.insert(dirs, dir .. "/")
+  end
+  table.remove(dirs)
+
+  if dirs then
+
+    return table.concat(dirs)
+  else
+    return nil
+  end
+end
+
+-- function make_directory_recursive(path)
+--   local current_path = ""
+--   for part in path:gmatch("[^/]+") do
+--     current_path = current_path .. part .. "/"
+--     succ = pandoc.system.make_directory(current_path)
+--     quarto.log.output(succ)
+--   end
+-- end
+
 function Pandoc(doc)
   local files = {}
   for _, block in ipairs(code_blocks) do
@@ -99,6 +123,10 @@ function Pandoc(doc)
   end
 
   for _, file in ipairs(files) do
+    local dirs = extract_dirs(file.path)
+    if dirs ~= nil then
+      os.execute("mkdir -p " .. dirs)
+    end
     local file_to = io.open(file.path, "w")
     file_to:write(file.text)
     file_to:close()
